@@ -1,24 +1,23 @@
 package marcin;
 
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.Deque;
 
 public class TaskProducer implements Runnable{
 
         private final int size_max=1000;
-        private ConcurrentLinkedDeque<String> concurrentLinkedDeque;
+        private Deque<String> deque;
 
-        TaskProducer(ConcurrentLinkedDeque concurrentLinkedDeque){
-                this.concurrentLinkedDeque=concurrentLinkedDeque;
+        TaskProducer(Deque concurrentLinkedDeque){
+                this.deque =concurrentLinkedDeque;
         }
-
 
         public void run() {
                 FormulaGenerator rf=new FormulaGenerator();
                 while(true) {
-                        while (concurrentLinkedDeque.size() < size_max) {
-                                concurrentLinkedDeque.offer(rf.generateRandom());
+                        while (deque.size() < size_max) {
+                                deque.offer(rf.generateRandom());
                         }
-                        while(concurrentLinkedDeque.size() < size_max/2) {
+                        while(deque.size() < size_max/2) {
                                 try {
                                         Thread.sleep(1000);
                                 } catch (InterruptedException e) {
@@ -27,7 +26,4 @@ public class TaskProducer implements Runnable{
                         }
                 }
         }
-
-
-
 }

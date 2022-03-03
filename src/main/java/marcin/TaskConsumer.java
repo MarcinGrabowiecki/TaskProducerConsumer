@@ -1,13 +1,13 @@
 package marcin;
 
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.Deque;
 
 public class TaskConsumer implements Runnable{
 
-        private ConcurrentLinkedDeque<String>concurrentLinkedDeque;
+        private Deque<String> deque;
 
-        TaskConsumer(ConcurrentLinkedDeque concurrentLinkedDeque){
-            this.concurrentLinkedDeque=concurrentLinkedDeque;
+        TaskConsumer(Deque concurrentLinkedDeque){
+            this.deque =concurrentLinkedDeque;
         }
 
         FormulaEvaluator formulaEvaluator=new FormulaEvaluator();
@@ -15,7 +15,7 @@ public class TaskConsumer implements Runnable{
         @Override
         public void run() {
             while(true){
-                String formula = concurrentLinkedDeque.poll();
+                String formula = deque.poll();
                 if(formula!=null) {
                     System.out.println(formulaEvaluator.evaluate(formula)+"\t"+formula);
                 }
@@ -26,5 +26,4 @@ public class TaskConsumer implements Runnable{
                 }
             }
         }
-
 }
