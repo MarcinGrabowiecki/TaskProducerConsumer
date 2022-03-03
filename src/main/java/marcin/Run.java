@@ -6,6 +6,7 @@ public class Run {
     public static void main(String[]args){
         final int size_max=1000;
         ConcurrentLinkedDeque<String> blockingQueue = new ConcurrentLinkedDeque<String>();
+
         Runnable taskProducer = new Runnable() {
             @Override
             public void run() {
@@ -25,24 +26,13 @@ public class Run {
             }
         };
 
-        Runnable taskConsumer = new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    String formula = blockingQueue.poll();
-                    if(formula!=null) {
-
-                    }
-                }
-            }
-        };
 
         new Thread(taskProducer).start();
         new Thread(taskProducer).start();
 
-        new Thread(taskConsumer).start();
-        new Thread(taskConsumer).start();
-        new Thread(taskConsumer).start();
-        new Thread(taskConsumer).start();
+        new Thread(new TaskConsumer(blockingQueue)).start();
+        new Thread(new TaskConsumer(blockingQueue)).start();
+        new Thread(new TaskConsumer(blockingQueue)).start();
+        new Thread(new TaskConsumer(blockingQueue)).start();
     }
 }
