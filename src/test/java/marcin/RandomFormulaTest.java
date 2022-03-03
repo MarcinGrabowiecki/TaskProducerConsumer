@@ -8,7 +8,7 @@ class RandomFormulaTest {
 
     @Test
     public void test() throws ScriptException {
-        Formula rf=new Formula();
+        FormulaGenerator rf=new FormulaGenerator();
         System.out.println(rf.generateRandom());
 
     }

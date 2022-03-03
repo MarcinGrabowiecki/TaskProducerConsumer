@@ -2,7 +2,7 @@ package marcin;
 
 import java.util.Random;
 
-public class Formula {
+public class FormulaGenerator {
     private final static int MAX_NUM=9999999;
     private final static int MIN_FORMULA_LEN=10;
     private final static int MAX_FORMULA_LEN=1000;
@@ -17,4 +17,5 @@ public class Formula {
         }
         return formula.toString().substring(0,formula.length()-1);
     }
+
 }

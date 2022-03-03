@@ -1,6 +1,5 @@
 package marcin;
 
-import com.fathzer.soft.javaluator.DoubleEvaluator;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Run {
@@ -10,7 +9,7 @@ public class Run {
         Runnable taskProducer = new Runnable() {
             @Override
             public void run() {
-                Formula rf=new Formula();
+                FormulaGenerator rf=new FormulaGenerator();
                 while(true) {
                     while (blockingQueue.size() < size_max) {
                             blockingQueue.offer(rf.generateRandom());
@@ -32,9 +31,7 @@ public class Run {
                 while(true){
                     String formula = blockingQueue.poll();
                     if(formula!=null) {
-                        DoubleEvaluator eval = new DoubleEvaluator();
-                        Double result = eval.evaluate(formula);
-                        System.out.println(formula + "\t" + result);
+
                     }
                 }
             }
